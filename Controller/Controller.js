@@ -17,6 +17,7 @@ controller.list = (req, res) =>{
 controller.save = (req,res)=>{
     const data = req.body;
     req.getConnection((err, conn) =>{
+        
         conn.query("INSERT INTO empleados VALUES ('3','"+ data.Nombre + "','" + data.Puesto +"',"+data.Salario+")", (err,empleado)=>{
             res.redirect("/");
         });
