@@ -1,3 +1,4 @@
+const uuid = require("uuid");
 const controller = {};
 
 controller.list = (req, res) =>{
@@ -17,8 +18,7 @@ controller.list = (req, res) =>{
 controller.save = (req,res)=>{
     const data = req.body;
     req.getConnection((err, conn) =>{
-        
-        conn.query("INSERT INTO empleados VALUES ('3','"+ data.Nombre + "','" + data.Puesto +"',"+data.Salario+")", (err,empleado)=>{
+        conn.query("INSERT INTO empleados VALUES ('" + uuid.v4() + "','" + data.Nombre + "','" + data.Puesto +"',"+data.Salario+")", (err,empleado)=>{
             res.redirect("/");
         });
     });
@@ -27,7 +27,7 @@ controller.save = (req,res)=>{
 controller.delete = (req,res)=>{
     const {id} = req.params;
     req.getConnection((err, conn)=>{
-        conn.query('DELETE FROM empleados WHERE ID= '+id,(err,rows)=>{
+        conn.query("DELETE FROM empleados WHERE ID= ?", [id],(err,rows)=>{
             res.redirect("/");
         });
     });
@@ -36,7 +36,8 @@ controller.delete = (req,res)=>{
 controller.edit = (req,res)=>{
     const {id} = req.params;
     req.getConnection((err, conn)=>{
-        conn.query('SELECT * FROM empleados WHERE ID = '+id,(err,rows)=>{
+        conn.query("SELECT * FROM empleados WHERE ID = ?",[id],(err,rows)=>{
+            
             if(err){
                 res.json(err);
                 // next(error); mejor manejo de errores
