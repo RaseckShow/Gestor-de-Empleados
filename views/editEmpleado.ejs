@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark sticky-top">
         <a class="navbar-brand p-3" href="/">Gestion de empleados</a>
     </nav>
   <div class="container pt-3 d-flex justify-content-center">
     <form class="col-md-5 card text-white bg-secondary p-3" action="/update/<%= data.ID %>" method="POST">
-        <div class="form-row">
+      <h5 class="text-center">Actualización de Empleado</h5>  
+      <div class="form-row">
           <div class="form-group col">
             <label for="inputName">Nombre</label>
             <input type="text" class="form-control" name="Nombre" id="inputName" value="<%= data.Nombre %>">
@@ -22,7 +23,7 @@
           <div class="form-group col">
             <label for="inputPuesto">Puesto</label>
             <select id="inputPuesto" name="Puesto" class="form-control">
-              <option selected>Choose...</option>
+              <option selected><%= data.Puesto%></option>
               <option>Jefe de departamento</option>
               <option>Programador</option>
               <option>Analista de datos</option>
@@ -40,7 +41,7 @@
             <input type="number" name="Salario" class="form-control" id="inputSalario" value="<%= data.Salario %>">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mb-3">Actualizar Empleado</button>
+        <button type="submit" class="btn btn-primary mb-3">Actualizar</button>
     </form>
   </div>
 
