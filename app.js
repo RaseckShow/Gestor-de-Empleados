@@ -17,7 +17,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(morgan("dev"));
 app.use(myConnection(mysql,{
     host: 'localhost',
-    port:'3306',
     user :'ad',
     password : 'dev2023',
     database :"dbinc"
